@@ -1,21 +1,39 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			planets: []
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
+			planetsInfoGatherer: () => {
+				fetch("https://swapi.dev/api/planets/")
+					.then(response => {
+						if (!response.ok) {
+							throw Error(response.status);
+						}
+						return response.json();
+					})
+					.then(responseAsJson => {
+						let planetsContent = responseAsJson.results;
+						console.log(planetsContent);
+						getActions().setPlanets(planetsContent);
+						// console.log(getStore().planets);
+					})
+					.catch(error => {
+						console.log("Error status: ", error);
+					});
+			},
+			setPlanets: x => {
+				x.map((planet, index) => {
+					getStore().planets.push({
+						name: planet.name,
+						climate: planet.climate,
+						diameter: planet.diameter,
+						population: planet.population,
+						terrain: planet.terrain
+					});
+					console.log(getStore().planets);
+				});
+			},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
