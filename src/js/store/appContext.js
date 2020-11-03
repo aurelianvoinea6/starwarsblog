@@ -25,6 +25,7 @@ const injectContext = PassedComponent => {
 		useEffect(
 			() => {
 				state.actions.planetsInfoGatherer(BaseApi.concat("planets/"));
+				// state.actions.readFavorites();
 				// state.actions.addTofavorites();
 				// aqui meter local storage.
 				// console.log(state.store.planets);
@@ -38,7 +39,7 @@ const injectContext = PassedComponent => {
 				 *
 				 **/
 			},
-			[state.store]
+			[state.store, state.favorites]
 		);
 
 		// The initial value for the context is not null anymore, but the current state of this component,

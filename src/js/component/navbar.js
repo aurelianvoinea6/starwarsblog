@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import Navbar from "react-bootstrap/Navbar";
+import { Context } from "../store/appContext.js";
 
 export const NavbarComponent = () => {
+	const { store, actions } = useContext(Context);
 	// <Link to="/demo">
 	// 			<button className="btn btn-primary">Check the Context in action</button>
 
@@ -17,9 +19,11 @@ export const NavbarComponent = () => {
 				</Dropdown.Toggle>
 
 				<Dropdown.Menu>
-					<Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-					<Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-					<Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+					<Dropdown.Item href="#/action-1">
+						{store.favorites.map((eachFavorite, i) => {
+							return <li key={i}>{eachFavorite}</li>;
+						})}
+					</Dropdown.Item>
 				</Dropdown.Menu>
 			</Dropdown>
 		</Navbar>
