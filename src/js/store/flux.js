@@ -48,11 +48,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ favorites: [...getStore().favorites, param].flat() });
 				console.log(getStore().favorites);
 			},
-			// readFavorites: arr => {
-			// 	getStore().favorites.map((eachFavorite, i) => {
-			// 		return <li key={i}>{eachFavorite}</li>;
-			// 	});
-			// },
+			delete: param => {
+				getStore().favorites.splice(param, 1);
+			},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
