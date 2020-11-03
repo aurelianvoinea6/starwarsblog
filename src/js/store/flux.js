@@ -4,9 +4,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			planets: []
 		},
 		actions: {
-			planetsInfoGatherer: () => {
-				fetch("https://swapi.dev/api/planets/")
+			planetsInfoGatherer: URL => {
+				console.log(URL);
+				fetch(URL)
 					.then(response => {
+						console.log(response);
 						if (!response.ok) {
 							throw Error(response.status);
 						}
@@ -14,25 +16,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(responseAsJson => {
 						let planetsContent = responseAsJson.results;
-						console.log(planetsContent);
 						getActions().setPlanets(planetsContent);
+						if (responseAsJson.next) {
+							getActions().planetsInfoGatherer(responseAsJson.next.replace(":", "s:"));
+						}
 						// console.log(getStore().planets);
 					})
 					.catch(error => {
 						console.log("Error status: ", error);
 					});
 			},
-			setPlanets: x => {
-				x.map((planet, index) => {
-					getStore().planets.push({
+			setPlanets: planetsList => {
+				let formatPlantes = [];
+				planetsList.map(planet => {
+					let formatEachPlanet = {
 						name: planet.name,
 						climate: planet.climate,
+						terrain: planet.terrain,
 						diameter: planet.diameter,
-						population: planet.population,
-						terrain: planet.terrain
-					});
-					console.log(getStore().planets);
+						population: planet.population
+					};
+					formatPlantes.push(formatEachPlanet);
 				});
+				setStore({ planets: [...getStore().planets, formatPlantes].flat() });
+				console.log(planets);
 			},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
