@@ -1,22 +1,29 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 
 import { Context } from "../store/appContext.js";
 
-import Card from "react-bootstrap/Card";
+import demo from "../../styles/demo.scss";
 
-import Button from "react-bootstrap/Button";
-
-export const MyCardCreator = () => {
+export const MyCardCreator = props => {
 	const { store, actions } = useContext(Context);
-
-	return (
-		<Card style={{ width: "18rem" }}>
-			<Card.Img variant="top" src="holder.js/100px180" />
-			<Card.Body>
-				<Card.Title>Card Title</Card.Title>
-				<Card.Text>Some quick example text to build on the card title</Card.Text>
-				<Button variant="primary">Go somewhere</Button>
-			</Card.Body>
-		</Card>
-	);
+	const cards = store.planets.map((planet, index) => (
+		<div className="card card-styling-class" key={index}>
+			<img
+				src="https://upload.wikimedia.org/wikipedia/commons/4/46/Trantor-Coruscant.jpg"
+				className="card-img-top"
+				alt="planets img"
+			/>
+			<div className="card-body d-flex flex-column">
+				<h5 className="card-title">{planet.name}</h5>
+				<p className="card-text mb-0">{planet.climate}</p>
+				<p className="card-text my-0">{planet.terrain}</p>
+				<p className="card-text my-0">{planet.diameter}</p>
+				<p className="card-text my-0">{planet.population}</p>
+				<a href="#" className="btn btn-primary m-auto">
+					More info
+				</a>
+			</div>
+		</div>
+	));
+	return cards;
 };
