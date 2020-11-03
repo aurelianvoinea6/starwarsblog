@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 
 import { Context } from "../store/appContext.js";
 
+import { Link } from "react-router-dom";
+
 import demo from "../../styles/demo.scss";
 
 export const MyCardCreator = props => {
@@ -19,9 +21,12 @@ export const MyCardCreator = props => {
 				<p className="card-text my-0">{planet.terrain}</p>
 				<p className="card-text my-0">{planet.diameter}</p>
 				<p className="card-text my-0">{planet.population}</p>
-				<button href="#" className="btn btn-primary m-auto">
-					More info
-				</button>
+				<Link to={"/planets/" + planet.name}>
+					<button href="#" className="btn btn-primary m-auto">
+						More info
+					</button>
+				</Link>
+
 				<button onClick={() => actions.addTofavorites(planet.name)} className="btn btn-primary m-auto">
 					favorites
 				</button>

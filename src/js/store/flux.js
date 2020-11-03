@@ -48,8 +48,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ favorites: [...getStore().favorites, param].flat() });
 				console.log(getStore().favorites);
 			},
-			delete: param => {
-				getStore().favorites.splice(param, 1);
+			delete: arr => {
+				getStore().favorites.splice(arr, 1);
 			},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

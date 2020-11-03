@@ -8,7 +8,31 @@ export const NavbarComponent = () => {
 	const { store, actions } = useContext(Context);
 	const [listItem, setListItem] = useState(null);
 
+	// const isEmpty = () => {
+	// 	if (store.favorites.length == 0) {
+	// 		return "empty";
+	// 	} else {
+	// 		setListItem(
+	// 			store.favorites.map((eachFavorite, i) => {
+	// 				return (
+	// 					<li key={i}>
+	// 						{eachFavorite}
+	// 						<button
+	// 							className="btn btn-outline-dark"
+	// 							onClick={() => {
+	// 								actions.delete();
+	// 							}}>
+	// 							<i className="far fa-trash-alt" />
+	// 						</button>
+	// 					</li>
+	// 				);
+	// 			})
+	// 		);
+	// 	}
+	// };
+
 	useEffect(() => {
+		// isEmpty();
 		setListItem(
 			store.favorites.map((eachFavorite, i) => {
 				return (
