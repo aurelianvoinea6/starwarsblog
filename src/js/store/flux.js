@@ -19,6 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						getActions().setPlanets(planetsContent);
 						if (responseAsJson.next) {
 							getActions().planetsInfoGatherer(responseAsJson.next.replace(":", "s:"));
+							console.log("in the next conditional");
 						}
 						// console.log(getStore().planets);
 					})
@@ -39,7 +40,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					formatPlantes.push(formatEachPlanet);
 				});
 				setStore({ planets: [...getStore().planets, formatPlantes].flat() });
-				console.log(planets);
 			},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
