@@ -5,7 +5,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 export const CardStarwars = () => {
 	return (
 		<Card style={{ width: "18rem" }}>
-			<Card.Header>Featured</Card.Header>
+			<Card.Header>StarWars</Card.Header>
 			<ListGroup variant="flush">
 				<ListGroup.Item>Cras justo odio</ListGroup.Item>
 				<ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
