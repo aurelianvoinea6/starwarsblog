@@ -19,9 +19,12 @@ export const MyCardCreator = props => {
 				<p className="card-text my-0">{planet.terrain}</p>
 				<p className="card-text my-0">{planet.diameter}</p>
 				<p className="card-text my-0">{planet.population}</p>
-				<a href="#" className="btn btn-primary m-auto">
+				<button href="#" className="btn btn-primary m-auto">
 					More info
-				</a>
+				</button>
+				<button onClick={() => actions.addTofavorites(planet.name)} className="btn btn-primary m-auto">
+					favorites
+				</button>
 			</div>
 		</div>
 	));

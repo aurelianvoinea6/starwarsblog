@@ -25,6 +25,7 @@ const injectContext = PassedComponent => {
 		useEffect(
 			() => {
 				state.actions.planetsInfoGatherer(BaseApi.concat("planets/"));
+				// state.actions.addTofavorites();
 				// aqui meter local storage.
 				// console.log(state.store.planets);
 				/**

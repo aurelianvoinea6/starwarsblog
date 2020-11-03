@@ -1,7 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			planets: []
+			planets: [],
+			favorites: []
 		},
 		actions: {
 			planetsInfoGatherer: URL => {
@@ -40,6 +41,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					formatPlantes.push(formatEachPlanet);
 				});
 				setStore({ planets: [...getStore().planets, formatPlantes].flat() });
+			},
+			addTofavorites: param => {
+				setStore({ favorites: [...getStore().favorites, param].flat() });
+				console.log(getStore().favorites);
 			},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
